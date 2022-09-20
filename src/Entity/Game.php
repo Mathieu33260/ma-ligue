@@ -40,11 +40,11 @@ class Game
     #[ORM\JoinColumn(nullable: false)]
     private ?League $league = null;
 
-    #[ORM\ManyToOne(inversedBy: 'games')]
+    #[ORM\ManyToOne(inversedBy: 'gamesHome')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Team $hometeam = null;
 
-    #[ORM\ManyToOne(inversedBy: 'games')]
+    #[ORM\ManyToOne(inversedBy: 'gamesAway')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Team $awayteam = null;
 

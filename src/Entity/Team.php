@@ -45,7 +45,10 @@ class Team
     private Collection $standings;
 
     #[ORM\OneToMany(mappedBy: 'hometeam', targetEntity: Game::class)]
-    private Collection $games;
+    private Collection $gamesHome;
+
+    #[ORM\OneToMany(mappedBy: 'awayteam', targetEntity: Game::class)]
+    private Collection $gamesAway;
 
     #[ORM\OneToMany(mappedBy: 'team', targetEntity: Lineup::class)]
     private Collection $lineups;
@@ -63,7 +66,8 @@ class Team
     {
         $this->players = new ArrayCollection();
         $this->standings = new ArrayCollection();
-        $this->games = new ArrayCollection();
+        $this->gamesHome = new ArrayCollection();
+        $this->gamesAway = new ArrayCollection();
         $this->lineups = new ArrayCollection();
         $this->gameStats = new ArrayCollection();
         $this->teamStats = new ArrayCollection();
@@ -232,27 +236,57 @@ class Team
     /**
      * @return Collection<int, Game>
      */
-    public function getGames(): Collection
+    public function getGamesHome(): Collection
     {
-        return $this->games;
+        return $this->gamesHome;
     }
 
-    public function addGame(Game $game): self
+    public function addGameHome(Game $gameHome): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games->add($game);
-            $game->setHometeam($this);
+        if (!$this->gamesHome->contains($gameHome)) {
+            $this->gamesHome->add($gameHome);
+            $gameHome->setHometeam($this);
         }
 
         return $this;
     }
 
-    public function removeGame(Game $game): self
+    public function removeGameHome(Game $gameHome): self
     {
-        if ($this->games->removeElement($game)) {
+        if ($this->gamesHome->removeElement($gameHome)) {
             // set the owning side to null (unless already changed)
-            if ($game->getHometeam() === $this) {
-                $game->setHometeam(null);
+            if ($gameHome->getHometeam() === $this) {
+                $gameHome->setHometeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGamesAway(): Collection
+    {
+        return $this->gamesAway;
+    }
+
+    public function addGameAway(Game $gameAway): self
+    {
+        if (!$this->gamesAway->contains($gameAway)) {
+            $this->gamesAway->add($gameAway);
+            $gameAway->setAwayteam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGameAway(Game $gameAway): self
+    {
+        if ($this->gamesAway->removeElement($gameAway)) {
+            // set the owning side to null (unless already changed)
+            if ($gameAway->getAwayteam() === $this) {
+                $gameAway->setAwayteam(null);
             }
         }
 

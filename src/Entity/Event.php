@@ -35,7 +35,7 @@ class Event
     #[ORM\JoinColumn(nullable: false)]
     private ?Player $player = null;
 
-    #[ORM\ManyToOne(inversedBy: 'events')]
+    #[ORM\ManyToOne(inversedBy: 'eventsAssists')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Player $playerAssist = null;
 

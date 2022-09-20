@@ -60,11 +60,15 @@ class Player
     #[ORM\OneToMany(mappedBy: 'player', targetEntity: Event::class)]
     private Collection $events;
 
+    #[ORM\OneToMany(mappedBy: 'playerAssist', targetEntity: Event::class)]
+    private Collection $eventsAssists;
+
     public function __construct()
     {
         $this->playerStats = new ArrayCollection();
         $this->playerPositions = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->eventsAssists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -288,6 +292,36 @@ class Player
             // set the owning side to null (unless already changed)
             if ($event->getPlayer() === $this) {
                 $event->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEventsAssists(): Collection
+    {
+        return $this->eventsAssists;
+    }
+
+    public function addEventAssist(Event $eventAssist): self
+    {
+        if (!$this->eventsAssists->contains($eventAssist)) {
+            $this->eventsAssists->add($eventAssist);
+            $eventAssist->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventAssist(Event $eventAssist): self
+    {
+        if ($this->eventsAssists->removeElement($eventAssist)) {
+            // set the owning side to null (unless already changed)
+            if ($eventAssist->getPlayer() === $this) {
+                $eventAssist->setPlayer(null);
             }
         }
 
