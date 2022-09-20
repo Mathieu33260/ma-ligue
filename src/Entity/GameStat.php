@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\GameStatRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: GameStatRepository::class)]
+#[ApiResource]
+class GameStat
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $value = null;
+
+    #[ORM\ManyToOne(inversedBy: 'gameStats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Game $game = null;
+
+    #[ORM\ManyToOne(inversedBy: 'gameStats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(string $value): self
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+}
