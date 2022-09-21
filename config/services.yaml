@@ -26,5 +26,83 @@ services:
                 event: 'preUpdate'
                 entity: 'App\Entity\User'
 
+    App\Listener\Event\EventPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Event'
+
+    App\Listener\Game\GamePreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Game'
+
+    App\Listener\GameStat\GameStatPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\GameStat'
+
+    App\Listener\League\LeaguePreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\League'
+
+    App\Listener\Lineup\LineupPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Lineup'
+
+    App\Listener\Player\PlayerPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Player'
+
+    App\Listener\PlayerPosition\PlayerPositionPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\PlayerPosition'
+
+    App\Listener\PlayerStat\PlayerStatPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\PlayerStat'
+
+    App\Listener\Round\RoundPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Round'
+
+    App\Listener\Stadium\StadiumPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Stadium'
+
+    App\Listener\Standing\StandingPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Standing'
+
+    App\Listener\Team\TeamPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\Team'
+
+    App\Listener\TeamStat\TeamStatPreUpdateListener:
+        tags:
+            -   name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\TeamStat'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

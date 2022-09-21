@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\GameRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,7 +22,7 @@ class Game
     private ?int $apiId = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $date = null;
+    private ?DateTimeImmutable $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'games')]
     #[ORM\JoinColumn(nullable: false)]
@@ -67,11 +68,19 @@ class Game
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Event::class)]
     private Collection $events;
 
+    #[ORM\Column]
+    private ?DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?DateTimeImmutable $updatedAt = null;
+
     public function __construct()
     {
         $this->lineups = new ArrayCollection();
         $this->gameStats = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -91,12 +100,12 @@ class Game
         return $this;
     }
 
-    public function getDate(): ?\DateTimeImmutable
+    public function getDate(): ?DateTimeImmutable
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeImmutable $date): self
+    public function setDate(DateTimeImmutable $date): self
     {
         $this->date = $date;
 
@@ -309,6 +318,30 @@ class Game
                 $event->setGame(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

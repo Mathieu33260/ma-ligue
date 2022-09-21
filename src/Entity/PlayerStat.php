@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PlayerStatRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlayerStatRepository::class)]
@@ -64,6 +65,18 @@ class PlayerStat
     #[ORM\ManyToOne(inversedBy: 'playerStats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?League $league = null;
+
+    #[ORM\Column]
+    private ?DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -258,6 +271,30 @@ class PlayerStat
     public function setLeague(?League $league): self
     {
         $this->league = $league;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

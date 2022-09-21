@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\LeagueRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,10 +28,10 @@ class League
     private ?int $season = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $start = null;
+    private ?DateTimeImmutable $start = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $end = null;
+    private ?DateTimeImmutable $end = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
@@ -59,12 +60,20 @@ class League
     #[ORM\OneToMany(mappedBy: 'league', targetEntity: TeamStat::class)]
     private Collection $teamStats;
 
+    #[ORM\Column]
+    private ?DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?DateTimeImmutable $updatedAt = null;
+
     public function __construct()
     {
         $this->playerStats = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->teamStats = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -108,24 +117,24 @@ class League
         return $this;
     }
 
-    public function getStart(): ?\DateTimeImmutable
+    public function getStart(): ?DateTimeImmutable
     {
         return $this->start;
     }
 
-    public function setStart(\DateTimeImmutable $start): self
+    public function setStart(DateTimeImmutable $start): self
     {
         $this->start = $start;
 
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeImmutable
+    public function getEnd(): ?DateTimeImmutable
     {
         return $this->end;
     }
 
-    public function setEnd(\DateTimeImmutable $end): self
+    public function setEnd(DateTimeImmutable $end): self
     {
         $this->end = $end;
 
@@ -313,6 +322,30 @@ class League
                 $teamStat->setLeague(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
