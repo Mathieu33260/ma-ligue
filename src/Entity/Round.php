@@ -22,7 +22,7 @@ class Round
     private ?string $number = null;
 
     #[ORM\Column]
-    private ?bool $current = null;
+    private ?bool $current = false;
 
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt = null;

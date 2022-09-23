@@ -54,12 +54,12 @@ class TestCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        //$this->roundDataImporter->import();
+        $this->roundDataImporter->import();
         /*$this->leagueDataImporter->import();
         $this->teamDataImporter->import();
         $this->playerDataImporter->import();*/
         //$this->playerStatDataImporter->import();
-        $this->standingDataImporter->import();
+        //$this->standingDataImporter->import();
 
         return 0;
     }
