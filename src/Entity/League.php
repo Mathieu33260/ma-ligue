@@ -48,8 +48,8 @@ class League
     #[ORM\OneToMany(mappedBy: 'league', targetEntity: PlayerStat::class)]
     private Collection $playerStats;
 
-    #[ORM\OneToOne(mappedBy: 'league', cascade: ['persist', 'remove'])]
-    private ?Standing $standing = null;
+    #[ORM\OneToMany(mappedBy: 'league', targetEntity: Standing::class)]
+    private Collection $standings;
 
     #[ORM\OneToMany(mappedBy: 'league', targetEntity: Game::class)]
     private Collection $games;
@@ -69,6 +69,7 @@ class League
     public function __construct()
     {
         $this->playerStats = new ArrayCollection();
+        $this->standings = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->teamStats = new ArrayCollection();
@@ -219,19 +220,32 @@ class League
         return $this;
     }
 
-    public function getStanding(): ?Standing
+    /**
+     * @return Collection<int, Standing>
+     */
+    public function getStandings(): Collection
     {
-        return $this->standing;
+        return $this->standings;
     }
 
-    public function setStanding(Standing $standing): self
+    public function addStanding(Standing $standing): self
     {
-        // set the owning side of the relation if necessary
-        if ($standing->getLeague() !== $this) {
+        if (!$this->standings->contains($standing)) {
+            $this->standings->add($standing);
             $standing->setLeague($this);
         }
 
-        $this->standing = $standing;
+        return $this;
+    }
+
+    public function removeStanding(Standing $standing): self
+    {
+        if ($this->standings->removeElement($standing)) {
+            // set the owning side to null (unless already changed)
+            if ($standing->getLeague() === $this) {
+                $standing->setLeague(null);
+            }
+        }
 
         return $this;
     }

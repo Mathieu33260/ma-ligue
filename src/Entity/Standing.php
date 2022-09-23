@@ -16,7 +16,7 @@ class Standing
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'standing', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'standing')]
     #[ORM\JoinColumn(nullable: false)]
     private ?League $league = null;
 
@@ -32,7 +32,7 @@ class Standing
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
@@ -82,7 +82,7 @@ class Standing
         return $this->league;
     }
 
-    public function setLeague(League $league): self
+    public function setLeague(?League $league): self
     {
         $this->league = $league;
 
@@ -142,7 +142,7 @@ class Standing
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

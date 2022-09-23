@@ -6,6 +6,7 @@ use App\DataImporter\Football\League\LeagueDataImporter;
 use App\DataImporter\Football\Player\PlayerDataImporter;
 use App\DataImporter\Football\PlayerStat\PlayerStatDataImporter;
 use App\DataImporter\Football\Round\RoundDataImporter;
+use App\DataImporter\Football\Standing\StandingDataImporter;
 use App\DataImporter\Football\Team\TeamDataImporter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,6 +22,7 @@ class TestCommand extends Command
     private PlayerDataImporter $playerDataImporter;
     private LeagueDataImporter $leagueDataImporter;
     private PlayerStatDataImporter $playerStatDataImporter;
+    private StandingDataImporter $standingDataImporter;
 
     public function __construct(
         RoundDataImporter $roundDataImporter,
@@ -28,6 +30,7 @@ class TestCommand extends Command
         PlayerDataImporter $playerDataImporter,
         LeagueDataImporter $leagueDataImporter,
         PlayerStatDataImporter $playerStatDataImporter,
+        StandingDataImporter $standingDataImporter,
         string $name = null
     )
     {
@@ -37,6 +40,7 @@ class TestCommand extends Command
         $this->playerDataImporter = $playerDataImporter;
         $this->leagueDataImporter = $leagueDataImporter;
         $this->playerStatDataImporter = $playerStatDataImporter;
+        $this->standingDataImporter = $standingDataImporter;
     }
 
     protected function configure(): void
@@ -54,7 +58,8 @@ class TestCommand extends Command
         /*$this->leagueDataImporter->import();
         $this->teamDataImporter->import();
         $this->playerDataImporter->import();*/
-        $this->playerStatDataImporter->import();
+        //$this->playerStatDataImporter->import();
+        $this->standingDataImporter->import();
 
         return 0;
     }

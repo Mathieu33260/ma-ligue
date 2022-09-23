@@ -57,7 +57,7 @@ class TeamDataImporter extends FootballImporter
                 $this->em->persist($team);
                 $this->em->persist($stadium);
             }
-            $this->em->flush();
         }
+        $this->em->flush();
     }
 }
