@@ -4,7 +4,6 @@ namespace App\DataImporter\Football\Player;
 
 use App\DataImporter\Football\FootballImporter;
 use App\Entity\Player;
-use App\Entity\Stadium;
 use App\Entity\Team;
 
 class PlayerDataImporter extends FootballImporter

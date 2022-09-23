@@ -24,7 +24,7 @@ class Player
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $age = null;
 
     #[ORM\Column(nullable: true)]
@@ -114,7 +114,7 @@ class Player
         return $this->age;
     }
 
-    public function setAge(int $age): self
+    public function setAge(?int $age): self
     {
         $this->age = $age;
 

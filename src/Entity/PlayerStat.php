@@ -20,46 +20,46 @@ class PlayerStat
     #[ORM\JoinColumn(nullable: false)]
     private ?Player $player = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $goals = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $goalsAssists = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $goalsConceded = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $passes = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $passesAccuracy = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $shots = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $shotsOn = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $cardYellow = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $cardRed = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $games = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $titu = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $penaltyOn = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $penaltyOut = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $minutesPlayed = null;
 
     #[ORM\ManyToOne(inversedBy: 'playerStats')]
@@ -71,6 +71,10 @@ class PlayerStat
 
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'playerStats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team = null;
 
     public function __construct()
     {
@@ -100,7 +104,7 @@ class PlayerStat
         return $this->goals;
     }
 
-    public function setGoals(int $goals): self
+    public function setGoals(?int $goals): self
     {
         $this->goals = $goals;
 
@@ -112,7 +116,7 @@ class PlayerStat
         return $this->goalsAssists;
     }
 
-    public function setGoalsAssists(int $goalsAssists): self
+    public function setGoalsAssists(?int $goalsAssists): self
     {
         $this->goalsAssists = $goalsAssists;
 
@@ -124,7 +128,7 @@ class PlayerStat
         return $this->goalsConceded;
     }
 
-    public function setGoalsConceded(int $goalsConceded): self
+    public function setGoalsConceded(?int $goalsConceded): self
     {
         $this->goalsConceded = $goalsConceded;
 
@@ -136,7 +140,7 @@ class PlayerStat
         return $this->passes;
     }
 
-    public function setPasses(int $passes): self
+    public function setPasses(?int $passes): self
     {
         $this->passes = $passes;
 
@@ -148,7 +152,7 @@ class PlayerStat
         return $this->passesAccuracy;
     }
 
-    public function setPassesAccuracy(int $passesAccuracy): self
+    public function setPassesAccuracy(?int $passesAccuracy): self
     {
         $this->passesAccuracy = $passesAccuracy;
 
@@ -160,7 +164,7 @@ class PlayerStat
         return $this->shots;
     }
 
-    public function setShots(int $shots): self
+    public function setShots(?int $shots): self
     {
         $this->shots = $shots;
 
@@ -172,7 +176,7 @@ class PlayerStat
         return $this->shotsOn;
     }
 
-    public function setShotsOn(int $shotsOn): self
+    public function setShotsOn(?int $shotsOn): self
     {
         $this->shotsOn = $shotsOn;
 
@@ -184,7 +188,7 @@ class PlayerStat
         return $this->cardYellow;
     }
 
-    public function setCardYellow(int $cardYellow): self
+    public function setCardYellow(?int $cardYellow): self
     {
         $this->cardYellow = $cardYellow;
 
@@ -196,7 +200,7 @@ class PlayerStat
         return $this->cardRed;
     }
 
-    public function setCardRed(int $cardRed): self
+    public function setCardRed(?int $cardRed): self
     {
         $this->cardRed = $cardRed;
 
@@ -208,7 +212,7 @@ class PlayerStat
         return $this->games;
     }
 
-    public function setGames(int $games): self
+    public function setGames(?int $games): self
     {
         $this->games = $games;
 
@@ -220,7 +224,7 @@ class PlayerStat
         return $this->titu;
     }
 
-    public function setTitu(int $titu): self
+    public function setTitu(?int $titu): self
     {
         $this->titu = $titu;
 
@@ -232,7 +236,7 @@ class PlayerStat
         return $this->penaltyOn;
     }
 
-    public function setPenaltyOn(int $penaltyOn): self
+    public function setPenaltyOn(?int $penaltyOn): self
     {
         $this->penaltyOn = $penaltyOn;
 
@@ -244,7 +248,7 @@ class PlayerStat
         return $this->penaltyOut;
     }
 
-    public function setPenaltyOut(int $penaltyOut): self
+    public function setPenaltyOut(?int $penaltyOut): self
     {
         $this->penaltyOut = $penaltyOut;
 
@@ -256,7 +260,7 @@ class PlayerStat
         return $this->minutesPlayed;
     }
 
-    public function setMinutesPlayed(int $minutesPlayed): self
+    public function setMinutesPlayed(?int $minutesPlayed): self
     {
         $this->minutesPlayed = $minutesPlayed;
 
@@ -295,6 +299,18 @@ class PlayerStat
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }

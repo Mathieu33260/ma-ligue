@@ -24,7 +24,7 @@ class Team
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
@@ -69,6 +69,9 @@ class Team
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: PlayerStat::class)]
+    private Collection $playerStats;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -81,6 +84,7 @@ class Team
         $this->events = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
+        $this->playerStats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,7 +121,7 @@ class Team
         return $this->code;
     }
 
-    public function setCode(string $code): self
+    public function setCode(?string $code): self
     {
         $this->code = $code;
 
@@ -442,6 +446,36 @@ class Team
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayerStat>
+     */
+    public function getPlayerStats(): Collection
+    {
+        return $this->playerStats;
+    }
+
+    public function addPlayerStat(PlayerStat $playerStat): self
+    {
+        if (!$this->playerStats->contains($playerStat)) {
+            $this->playerStats->add($playerStat);
+            $playerStat->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerStat(PlayerStat $playerStat): self
+    {
+        if ($this->playerStats->removeElement($playerStat)) {
+            // set the owning side to null (unless already changed)
+            if ($playerStat->getTeam() === $this) {
+                $playerStat->setTeam(null);
+            }
+        }
 
         return $this;
     }
