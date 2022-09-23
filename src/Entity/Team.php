@@ -31,7 +31,7 @@ class Team
     private ?string $country = null;
 
     #[ORM\Column]
-    private ?DateTimeImmutable $founded = null;
+    private ?int $founded = null;
 
     #[ORM\Column(length: 255)]
     private ?string $logo = null;
@@ -136,12 +136,12 @@ class Team
         return $this;
     }
 
-    public function getFounded(): ?DateTimeImmutable
+    public function getFounded(): ?int
     {
         return $this->founded;
     }
 
-    public function setFounded(DateTimeImmutable $founded): self
+    public function setFounded(int $founded): self
     {
         $this->founded = $founded;
 

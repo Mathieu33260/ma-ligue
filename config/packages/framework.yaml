@@ -17,6 +17,15 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            # only requests matching scope will use these options
+            api.football.client:
+                base_uri: 'https://api-football-v1.p.rapidapi.com/v3'
+                headers:
+                    X-RapidAPI-Key: '%env(API_FOOTBALL_KEY)%'
+                    X-RapidAPI-Host: 'api-football-v1.p.rapidapi.com'
+
 when@test:
     framework:
         test: true

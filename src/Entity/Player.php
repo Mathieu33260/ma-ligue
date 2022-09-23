@@ -27,7 +27,7 @@ class Player
     #[ORM\Column]
     private ?int $age = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $number = null;
 
     #[ORM\Column(length: 255)]
@@ -36,16 +36,16 @@ class Player
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nationality = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $injured = null;
 
     #[ORM\ManyToOne(inversedBy: 'players')]
@@ -126,7 +126,7 @@ class Player
         return $this->number;
     }
 
-    public function setNumber(int $number): self
+    public function setNumber(?int $number): self
     {
         $this->number = $number;
 
@@ -162,7 +162,7 @@ class Player
         return $this->nationality;
     }
 
-    public function setNationality(string $nationality): self
+    public function setNationality(?string $nationality): self
     {
         $this->nationality = $nationality;
 
@@ -174,7 +174,7 @@ class Player
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -186,7 +186,7 @@ class Player
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -198,7 +198,7 @@ class Player
         return $this->injured;
     }
 
-    public function setInjured(bool $injured): self
+    public function setInjured(?bool $injured): self
     {
         $this->injured = $injured;
 
