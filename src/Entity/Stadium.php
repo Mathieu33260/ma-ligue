@@ -24,19 +24,19 @@ class Stadium
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $capacity = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $surface = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[ORM\OneToOne(inversedBy: 'stadium', cascade: ['persist', 'remove'])]
@@ -92,7 +92,7 @@ class Stadium
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(?string $address): self
     {
         $this->address = $address;
 
@@ -116,7 +116,7 @@ class Stadium
         return $this->capacity;
     }
 
-    public function setCapacity(int $capacity): self
+    public function setCapacity(?int $capacity): self
     {
         $this->capacity = $capacity;
 
@@ -128,7 +128,7 @@ class Stadium
         return $this->surface;
     }
 
-    public function setSurface(string $surface): self
+    public function setSurface(?string $surface): self
     {
         $this->surface = $surface;
 
@@ -140,7 +140,7 @@ class Stadium
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

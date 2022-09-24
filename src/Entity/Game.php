@@ -25,16 +25,16 @@ class Game
     private ?DateTimeImmutable $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'games')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Stadium $stadium = null;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $elapsed = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $referee = null;
 
     #[ORM\ManyToOne(inversedBy: 'games')]
@@ -53,10 +53,10 @@ class Game
     #[ORM\JoinColumn(nullable: false)]
     private ?Round $round = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $goalsHometeam = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $goalsAwayteam = null;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Lineup::class)]
@@ -141,7 +141,7 @@ class Game
         return $this->elapsed;
     }
 
-    public function setElapsed(int $elapsed): self
+    public function setElapsed(?int $elapsed): self
     {
         $this->elapsed = $elapsed;
 
@@ -153,7 +153,7 @@ class Game
         return $this->referee;
     }
 
-    public function setReferee(string $referee): self
+    public function setReferee(?string $referee): self
     {
         $this->referee = $referee;
 
@@ -213,7 +213,7 @@ class Game
         return $this->goalsHometeam;
     }
 
-    public function setGoalsHometeam(int $goalsHometeam): self
+    public function setGoalsHometeam(?int $goalsHometeam): self
     {
         $this->goalsHometeam = $goalsHometeam;
 
@@ -225,7 +225,7 @@ class Game
         return $this->goalsAwayteam;
     }
 
-    public function setGoalsAwayteam(int $goalsAwayteam): self
+    public function setGoalsAwayteam(?int $goalsAwayteam): self
     {
         $this->goalsAwayteam = $goalsAwayteam;
 

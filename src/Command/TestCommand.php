@@ -2,9 +2,11 @@
 
 namespace App\Command;
 
+use App\DataImporter\Football\Game\GameDataImporter;
 use App\DataImporter\Football\League\LeagueDataImporter;
 use App\DataImporter\Football\Player\PlayerDataImporter;
 use App\DataImporter\Football\PlayerStat\PlayerStatDataImporter;
+use App\DataImporter\Football\Round\CurrentRoundDataImporter;
 use App\DataImporter\Football\Round\RoundDataImporter;
 use App\DataImporter\Football\Standing\StandingDataImporter;
 use App\DataImporter\Football\Team\TeamDataImporter;
@@ -25,6 +27,8 @@ class TestCommand extends Command
     private PlayerStatDataImporter $playerStatDataImporter;
     private StandingDataImporter $standingDataImporter;
     private TeamStatDataImporter $teamStatDataImporter;
+    private CurrentRoundDataImporter $currentRoundDataImporter;
+    private GameDataImporter $gameDataImporter;
 
     public function __construct(
         RoundDataImporter $roundDataImporter,
@@ -34,6 +38,8 @@ class TestCommand extends Command
         PlayerStatDataImporter $playerStatDataImporter,
         StandingDataImporter $standingDataImporter,
         TeamStatDataImporter $teamStatDataImporter,
+        CurrentRoundDataImporter $currentRoundDataImporter,
+        GameDataImporter $gameDataImporter,
         string $name = null
     )
     {
@@ -45,6 +51,8 @@ class TestCommand extends Command
         $this->playerStatDataImporter = $playerStatDataImporter;
         $this->standingDataImporter = $standingDataImporter;
         $this->teamStatDataImporter = $teamStatDataImporter;
+        $this->currentRoundDataImporter = $currentRoundDataImporter;
+        $this->gameDataImporter = $gameDataImporter;
     }
 
     protected function configure(): void
@@ -64,7 +72,9 @@ class TestCommand extends Command
         $this->playerDataImporter->import();*/
         //$this->playerStatDataImporter->import();
         //$this->standingDataImporter->import();
-        $this->teamStatDataImporter->import();
+        //$this->teamStatDataImporter->import();
+        //$this->currentRoundDataImporter->import();
+        $this->gameDataImporter->import();
 
         return 0;
     }
