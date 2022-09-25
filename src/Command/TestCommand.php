@@ -6,6 +6,7 @@ use App\DataImporter\Football\Game\GameDataImporter;
 use App\DataImporter\Football\League\LeagueDataImporter;
 use App\DataImporter\Football\Lineup\LineupDataImporter;
 use App\DataImporter\Football\Player\PlayerDataImporter;
+use App\DataImporter\Football\PlayerPosition\PlayerPositionDataImporter;
 use App\DataImporter\Football\PlayerStat\PlayerStatDataImporter;
 use App\DataImporter\Football\Round\CurrentRoundDataImporter;
 use App\DataImporter\Football\Round\RoundDataImporter;
@@ -31,6 +32,7 @@ class TestCommand extends Command
     private CurrentRoundDataImporter $currentRoundDataImporter;
     private GameDataImporter $gameDataImporter;
     private LineupDataImporter $lineupDataImporter;
+    private PlayerPositionDataImporter $playerPositionDataImporter;
 
     public function __construct(
         RoundDataImporter $roundDataImporter,
@@ -43,6 +45,7 @@ class TestCommand extends Command
         CurrentRoundDataImporter $currentRoundDataImporter,
         GameDataImporter $gameDataImporter,
         LineupDataImporter $lineupDataImporter,
+        PlayerPositionDataImporter $playerPositionDataImporter,
         string $name = null
     )
     {
@@ -57,6 +60,7 @@ class TestCommand extends Command
         $this->currentRoundDataImporter = $currentRoundDataImporter;
         $this->gameDataImporter = $gameDataImporter;
         $this->lineupDataImporter = $lineupDataImporter;
+        $this->playerPositionDataImporter = $playerPositionDataImporter;
     }
 
     protected function configure(): void
@@ -79,7 +83,8 @@ class TestCommand extends Command
         //$this->teamStatDataImporter->import();
         //$this->currentRoundDataImporter->import();
         //$this->gameDataImporter->import();
-        $this->lineupDataImporter->import();
+        //$this->lineupDataImporter->import();
+        //$this->playerPositionDataImporter->import();
 
         return 0;
     }

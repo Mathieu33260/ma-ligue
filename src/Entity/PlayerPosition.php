@@ -19,10 +19,10 @@ class PlayerPosition
     #[ORM\Column]
     private ?int $number = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $position = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $grid = null;
 
     #[ORM\Column]
@@ -70,7 +70,7 @@ class PlayerPosition
         return $this->position;
     }
 
-    public function setPosition(string $position): self
+    public function setPosition(?string $position): self
     {
         $this->position = $position;
 
@@ -82,7 +82,7 @@ class PlayerPosition
         return $this->grid;
     }
 
-    public function setGrid(string $grid): self
+    public function setGrid(?string $grid): self
     {
         $this->grid = $grid;
 
