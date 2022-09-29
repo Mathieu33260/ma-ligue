@@ -25,7 +25,7 @@ class Event
     #[ORM\Column]
     private ?int $elapsed = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $elapsedExtra = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
@@ -33,15 +33,15 @@ class Event
     private ?Game $game = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Player $player = null;
 
     #[ORM\ManyToOne(inversedBy: 'eventsAssists')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Player $playerAssist = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Team $team = null;
 
     #[ORM\Column]
@@ -102,7 +102,7 @@ class Event
         return $this->elapsedExtra;
     }
 
-    public function setElapsedExtra(int $elapsedExtra): self
+    public function setElapsedExtra(?int $elapsedExtra): self
     {
         $this->elapsedExtra = $elapsedExtra;
 

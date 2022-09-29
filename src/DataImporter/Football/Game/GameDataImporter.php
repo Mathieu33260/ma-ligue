@@ -33,6 +33,7 @@ class GameDataImporter extends FootballImporter
                 $game->setApiId($gameApi['fixture']['id']);
                 $game->setDate(new DateTimeImmutable($gameApi['fixture']['date']));
                 $game->setStatus($gameApi['fixture']['status']['long']);
+                $game->setStatusCode($gameApi['fixture']['status']['short']);
                 $game->setElapsed($gameApi['fixture']['status']['elapsed']);
                 $game->setReferee($gameApi['fixture']['referee']);
                 $game->setGoalsHometeam($gameApi['goals']['home']);

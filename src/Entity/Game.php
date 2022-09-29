@@ -74,6 +74,9 @@ class Game
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $statusCode = null;
+
     public function __construct()
     {
         $this->lineups = new ArrayCollection();
@@ -342,6 +345,18 @@ class Game
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getStatusCode(): ?string
+    {
+        return $this->statusCode;
+    }
+
+    public function setStatusCode(string $statusCode): self
+    {
+        $this->statusCode = $statusCode;
 
         return $this;
     }
