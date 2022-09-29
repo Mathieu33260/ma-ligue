@@ -19,7 +19,7 @@ class GameStat
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $value = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameStats')]
@@ -64,7 +64,7 @@ class GameStat
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 

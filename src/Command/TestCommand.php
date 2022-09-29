@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\DataImporter\Football\Event\EventDataImporter;
 use App\DataImporter\Football\Game\GameDataImporter;
+use App\DataImporter\Football\GameStat\GameStatDataImporter;
 use App\DataImporter\Football\League\LeagueDataImporter;
 use App\DataImporter\Football\Lineup\LineupDataImporter;
 use App\DataImporter\Football\Player\PlayerDataImporter;
@@ -35,6 +36,7 @@ class TestCommand extends Command
     private LineupDataImporter $lineupDataImporter;
     private PlayerPositionDataImporter $playerPositionDataImporter;
     private EventDataImporter $eventDataImporter;
+    private GameStatDataImporter $gameStatDataImporter;
 
     public function __construct(
         RoundDataImporter $roundDataImporter,
@@ -49,6 +51,7 @@ class TestCommand extends Command
         LineupDataImporter $lineupDataImporter,
         PlayerPositionDataImporter $playerPositionDataImporter,
         EventDataImporter $eventDataImporter,
+        GameStatDataImporter $gameStatDataImporter,
         string $name = null
     )
     {
@@ -65,6 +68,7 @@ class TestCommand extends Command
         $this->lineupDataImporter = $lineupDataImporter;
         $this->playerPositionDataImporter = $playerPositionDataImporter;
         $this->eventDataImporter = $eventDataImporter;
+        $this->gameStatDataImporter = $gameStatDataImporter;
     }
 
     protected function configure(): void
@@ -90,6 +94,7 @@ class TestCommand extends Command
         //$this->lineupDataImporter->import();
         //$this->playerPositionDataImporter->import();
         //$this->eventDataImporter->import();
+        //$this->gameStatDataImporter->import();
 
         return 0;
     }
