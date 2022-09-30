@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Game;
+use App\Utils\Football\StatusUtils;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,19 @@ class GameRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByToCome($start, $end, $status = StatusUtils::STATUS_NOT_STARTED): array
+    {
+        return $this->createQueryBuilder('game')
+            ->andWhere('game.statusCode = :status')
+            ->andWhere('game.date BETWEEN :start AND :end')
+            ->setParameter('status', $status)
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 //    /**

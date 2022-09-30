@@ -4,27 +4,27 @@ namespace App\Utils\Football;
 
 class StatusUtils
 {
-    private const STATUS_TIME_TO_BE_DEFINED = 'TBD';
-    private const STATUS_NOT_STARTED = 'NS';
-    private const STATUS_FIRST_HALF = '1H';
-    private const STATUS_SECOND_HALF = '2H';
-    private const STATUS_HALF_TIME = 'HT';
-    private const STATUS_EXTRA_TIME = 'ET';
-    private const STATUS_PENALTY_IN_PROGRESS = 'P';
-    private const STATUS_MATCH_FINISHED = 'FT';
-    private const STATUS_MATCH_FINISHED_AFTER_EXTRA_TIME = 'AET';
-    private const STATUS_MATCH_FINISHED_AFTER_PENALTY = 'PEN';
-    private const STATUS_BREAK_TIME = 'BT';
-    private const STATUS_MATCH_SUSPENDED = 'SUSP';
-    private const STATUS_MATCH_INTERRUPTED = 'INT';
-    private const STATUS_MATCH_POSTPONED = 'PST';
-    private const STATUS_MATCH_CANCELED = 'CANC';
-    private const STATUS_MATCH_ABANDONED = 'ABD';
-    private const STATUS_TECHNICAL_LOST = 'AWD';
-    private const STATUS_WALK_OVER = 'WO';
-    private const STATUS_IN_PROGRESS = 'LIVE';
+    public const STATUS_TIME_TO_BE_DEFINED = 'TBD';
+    public const STATUS_NOT_STARTED = 'NS';
+    public const STATUS_FIRST_HALF = '1H';
+    public const STATUS_SECOND_HALF = '2H';
+    public const STATUS_HALF_TIME = 'HT';
+    public const STATUS_EXTRA_TIME = 'ET';
+    public const STATUS_PENALTY_IN_PROGRESS = 'P';
+    public const STATUS_MATCH_FINISHED = 'FT';
+    public const STATUS_MATCH_FINISHED_AFTER_EXTRA_TIME = 'AET';
+    public const STATUS_MATCH_FINISHED_AFTER_PENALTY = 'PEN';
+    public const STATUS_BREAK_TIME = 'BT';
+    public const STATUS_MATCH_SUSPENDED = 'SUSP';
+    public const STATUS_MATCH_INTERRUPTED = 'INT';
+    public const STATUS_MATCH_POSTPONED = 'PST';
+    public const STATUS_MATCH_CANCELED = 'CANC';
+    public const STATUS_MATCH_ABANDONED = 'ABD';
+    public const STATUS_TECHNICAL_LOST = 'AWD';
+    public const STATUS_WALK_OVER = 'WO';
+    public const STATUS_IN_PROGRESS = 'LIVE';
 
-    private const STATUS_TRANSLATE = [
+    public const STATUS_TRANSLATE = [
         self::STATUS_TIME_TO_BE_DEFINED => 'Planifié',
         self::STATUS_NOT_STARTED => 'À venir',
         self::STATUS_FIRST_HALF => 'Première mi-temps',
