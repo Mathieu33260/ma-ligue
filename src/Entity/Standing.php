@@ -16,7 +16,7 @@ class Standing
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'standing')]
+    #[ORM\ManyToOne(inversedBy: 'standings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?League $league = null;
 
